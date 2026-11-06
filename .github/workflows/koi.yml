@@ -1,0 +1,28 @@
+ name: Generate Git Koi
+
+    on:
+      schedule:
+        # Runs daily at midnight UTC
+        - cron: "0 0 * * *"
+      workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+    jobs:
+      koi:
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: Generate Koi GIF
+            uses: yalongwastaken/git-koi@main
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+
+          - name: Commit and push koi GIF
+            run: |
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add .
+              git diff --quiet && git diff --cached --quiet || (git commit -m "chore: tend the koi" && git push)
