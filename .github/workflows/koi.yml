@@ -1,12 +1,10 @@
  name: Generate Git Koi
-
-    on:
+ on:
       schedule:
-        # Runs daily at midnight UTC
         - cron: "0 0 * * *"
       workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
-    jobs:
+ jobs:
       koi:
         runs-on: ubuntu-latest
         permissions:
