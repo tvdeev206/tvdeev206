@@ -11,7 +11,7 @@
           contents: write
         steps:
           - name: Checkout repository
-            uses: actions/checkout@v4
+            uses: actions/checkout@v4.2.2
 
           - name: Generate Koi GIF
             uses: yalongwastaken/git-koi@main
